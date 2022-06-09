@@ -132,3 +132,5 @@ float tong_can_long_nhau_35(int n)
             return sqrt(i + tong_can_long_nhau_35(i++));
         }
 }
+
+// phuong dep traj
