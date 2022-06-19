@@ -260,3 +260,5 @@ void check_number (int n)
     if (flag) cout << "so n co cac chu so tang tu trai sang phai!\n";
     else cout << "so n co cac chu so khong tang tu trai sang phai!\n";
 }
+
+
