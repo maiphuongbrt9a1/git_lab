@@ -231,3 +231,32 @@ long long int reverse(long long int n)
 }
 
 
+// Hãy kiểm tra các chữ số của số nguyên dương n có tăng dần từ trái
+// sang phải hay không?
+
+void check_number (int n)
+{
+    string result = to_string(n);
+    int i = 0;
+    int length = result.length();
+    bool flag = true;
+
+    while (true)
+    {
+        if (result[i] > result[i + 1])
+        {
+            if (i + 1 == length)
+            {
+                break;
+            }
+            
+            flag = false;
+            break;
+        }
+        else i++;
+    }
+    
+    
+    if (flag) cout << "so n co cac chu so tang tu trai sang phai!\n";
+    else cout << "so n co cac chu so khong tang tu trai sang phai!\n";
+}
