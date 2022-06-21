@@ -38,6 +38,9 @@ int main()
     
     // cout << "reverse of n: " << reverse(n) << endl;
 
-    check_number(n);
+    // check_number(n);
+    // is_n_2k(n);
+    
+    cout << "tong cau 80: " << s_n_cau_80(n, x) << endl; 
     return 0;
 }

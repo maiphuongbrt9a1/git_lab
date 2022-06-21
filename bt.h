@@ -262,3 +262,33 @@ void check_number (int n)
 }
 
 
+// Kiểm tra số nguyên 4 byte có dạng 2^𝑘 hay không?
+
+void is_n_2k (int n)
+{
+    int temp = 1;
+    while (temp < n)
+    {
+        temp *= 2;
+    }
+    
+    if (temp == n)
+    {
+        cout << "n la so nguyen 4 byte co dang 2^K!\n";
+    }
+    else
+    {
+        cout << "n la so nguyen 4 byte ko co dang 2^K!\n";
+    }
+}
+
+float s_n_cau_80 (int n, int x)
+{
+    float result = 0.0f;
+    for (int i = 1; i <= n; i++)
+    {
+        result += power_x_n(x, i) * 1.0 / sum_n_number(i);
+    }
+    
+    return result;
+}

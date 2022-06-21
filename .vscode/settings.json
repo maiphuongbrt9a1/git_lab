@@ -28,5 +28,8 @@
     "**/.vscode",
     "**/.vscode/**"
   ],
-  "editor.foldingMaximumRegions": 65000
+  "editor.foldingMaximumRegions": 65000,
+  "files.associations": {
+    "iostream": "cpp"
+  }
 }
