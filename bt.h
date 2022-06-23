@@ -292,3 +292,19 @@ float s_n_cau_80 (int n, int x)
     
     return result;
 }
+
+
+void selection_Sort (int arr[])
+{
+    int i, j, min;
+    for (i = 0; i < 5; i++)
+    {
+        min = i;
+        for (j = i + 1; j < 5; j++)
+            if (arr[j] < arr[min]) min = j;
+        swap(arr[i], arr[min]);
+    }
+    
+}
+
+
