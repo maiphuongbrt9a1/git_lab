@@ -1,8 +1,10 @@
 #pragma once
 #include<iostream>
+#include<iomanip>
 #include<math.h>
 #include<vector>
 #include<cstring>
+#define EPSILON 0.00001f
 
 using namespace std;
 
@@ -308,3 +310,14 @@ void selection_Sort (int arr[])
 }
 
 
+float my_sqrt(int n)
+{  
+    
+    float result = 1.0f;
+    while (fabs(result * result - n) > EPSILON)
+    {
+        result = (n * 1.0 / result  - result) / 2 + result;
+    }
+    
+    return result;
+}

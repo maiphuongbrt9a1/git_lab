@@ -3,35 +3,35 @@ using namespace std;
 
 int main() 
 {
-    int *pD = new int [5];
-    cout << "nhap mang 5 so: \n";
-    for (int i = 0; i < 5; i++)
-    {
-        cin >> pD[i];
-    }
+    // int *pD = new int [5];
+    // cout << "nhap mang 5 so: \n";
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     cin >> pD[i];
+    // }
     
-    cout << "in mang 5 so: \n";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << pD[i] << " ";
-    }
+    // cout << "in mang 5 so: \n";
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     cout << pD[i] << " ";
+    // }
 
 
-    cout << endl;
-    selection_Sort(pD);
+    // cout << endl;
+    // selection_Sort(pD);
 
-    cout << "in mang 5 so: \n";
-    for (int i = 0; i < 5; i++)
-    {
-        cout << pD[i] << " ";
-    }
-    delete [] pD;
+    // cout << "in mang 5 so: \n";
+    // for (int i = 0; i < 5; i++)
+    // {
+    //     cout << pD[i] << " ";
+    // }
+    // delete [] pD;
 
     
-    // long long int n;
+    long long int n;
     // long long int x;
-    // cout << "nhap n:\n";
-    // cin >> n;
+    cout << "nhap n:\n";
+    cin >> n;
     // cout << "nhap x:\n";
     // cin >> x;
     // cout << sum_n_number(n) << endl;
@@ -67,5 +67,7 @@ int main()
     // is_n_2k(n);
     
     // cout << "tong cau 80: " << s_n_cau_80(n, x) << endl; 
+    
+    cout << "sqrt of n: " << fixed << setprecision(10) << my_sqrt(n) << endl; 
     return 0;
-}
+}   
