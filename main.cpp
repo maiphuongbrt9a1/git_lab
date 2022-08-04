@@ -110,16 +110,7 @@ using namespace std;
 //    tim_thu(ngay, thang, nam, nam_nhuan(nam));
 int main() 
 {
-//    float result;
-//    int n;
-//    cout << "nhap n: ";
-//    cin >> n;
-   
-//    result = cau1_pi_cach3(n);
-//    cout << fixed << setprecision(25) <<result * 2 << endl;
-
-    cau3();
-
+    cau7();
     return 0;
 }   
 

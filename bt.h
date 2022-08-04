@@ -784,6 +784,17 @@ float cau1_pi_cach3 (int n)
     else return (2 * n * 1.0f / ((2 *  n) - 1)) * (2 * n * 1.0f / ((2 * n) + 1)) * cau1_pi_cach3(n - 1);
 }
 
+void cau1 ()
+{
+    int n;
+    cout << "nhap n: ";
+    cin >> n;
+
+    cout << "pi tinh theo cach 1: " << cau1_pi_cach1(n) << endl;
+    cout << "pi tinh theo cach 2: " << cau1_pi_cach2(n) * 2 << endl;
+    cout << "pi tinh theo cach 3: " << cau1_pi_cach3(n) * 2 << endl;
+}
+
 void cau2 ()
 {
     float arr[MAX_SIZE];
@@ -1082,12 +1093,12 @@ void printCalendar(int month, int year)
 			getMonthName (month).c_str());
 
 		// Print the columns
-		printf(" Sun Mon Tue Wed Thu Fri Sat\n");
+		printf(" Sun   Mon  Tue  Wed  Thu Fri    Sat\n");
 
 		// Print appropriate spaces
 		int k;
 		for (k = 0; k < current; k++)
-			printf("	 ");
+			printf("     ");
 
 		for (int j = 1; j <= days; j++)
 		{
@@ -1321,3 +1332,59 @@ void cau6 ()
 
 
 // cau 7
+
+const char CHAR_55 = 55;
+const char CHAR_48 = 48;
+
+void convertNumber(int n, int b) {
+    if (n < 0 || b < 2 || b > 16 ) {
+        printf("He co so hoac gia tri chuyen doi khong hop le!");
+    }
+    int i;
+    char arr[20];
+    int count = 0;
+    int m;
+    int remainder = n;
+    while (remainder > 0) {
+        if (b > 10) {
+            m = remainder % b;
+            if (m >= 10) {
+                arr[count] = (char) (m + CHAR_55);
+                count++;
+            } else {
+                arr[count] = (char) (m + CHAR_48);
+                count++;
+            }
+        } else {
+            arr[count] = (char) ((remainder % b) + CHAR_48);
+            count++;
+        }
+        remainder = remainder / b;
+    }
+
+    for (i = count - 1; i >= 0; i--) {
+        printf("%c", arr[i]);
+    }
+}
+ 
+
+void cau7 ()
+{
+    int n;
+    cout << "nhap so n trong he co so 10: ";
+    cin >> n;
+    cout << "so " << n << " trong he co so 2 la: ";
+    convertNumber(n, 2); cout << endl;
+    cout << "so " << n << " trong he co so 8 la: ";
+    convertNumber(n, 8); cout << endl;
+    cout << "so " << n << " trong he co so 16 la: " ;
+    convertNumber(n, 16); cout << endl;
+}
+// int main() {
+//     int n = 12;
+//     printf("So %d trong he co so 2 = ", n);
+//     convertNumber(n, 2);
+//     printf("\nSo %d trong he co so 16 = ", n);
+//  convertNumber(n, 16);
+//     return 1;
+// }
