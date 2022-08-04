@@ -848,10 +848,158 @@ void cau2 ()
     
 }
 
+// C++ program two find number of
+// days between two given dates
+// #include <iostream>
+// using namespace std;
+
+// A date has day 'd', month 'm' and year 'y'
+struct Date {
+	int d, m, y;
+};
+
+// To store number of days in
+// all months from January to Dec.
+const int monthDays[12]
+	= { 31, 28, 31, 30, 31, 30,
+	31, 31, 30, 31, 30, 31 };
+
+// This function counts number of
+// leap years before the given date
+int countLeapYears(Date d)
+{
+	int years = d.y;
+
+	// Check if the current year needs to be
+	// considered for the count of leap years
+	// or not
+	if (d.m <= 2)
+		years--;
+
+	// An year is a leap year if it
+	// is a multiple of 4,
+	// multiple of 400 and not a
+	// multiple of 100.
+	return years / 4
+		- years / 100
+		+ years / 400;
+}
+
+// This function returns number of
+// days between two given dates
+int getDifference(Date dt1, Date dt2)
+{
+	// COUNT TOTAL NUMBER OF DAYS
+	// BEFORE FIRST DATE 'dt1'
+
+	// initialize count using years and day
+	long int n1 = dt1.y * 365 + dt1.d;
+
+	// Add days for months in given date
+	for (int i = 0; i < dt1.m - 1; i++)
+		n1 += monthDays[i];
+
+	// Since every leap year is of 366 days,
+	// Add a day for every leap year
+	n1 += countLeapYears(dt1);
+
+	// SIMILARLY, COUNT TOTAL NUMBER OF
+	// DAYS BEFORE 'dt2'
+
+	long int n2 = dt2.y * 365 + dt2.d;
+	for (int i = 0; i < dt2.m - 1; i++)
+		n2 += monthDays[i];
+	n2 += countLeapYears(dt2);
+
+	// return difference between two counts
+	return (n2 - n1);
+}
+
+// Driver code
+// int main()
+// {
+// 	Date dt1 = { 1, 2, 2000 };
+// 	Date dt2 = { 1, 2, 2004 };
+
+// 	// Function call
+// 	cout << "Difference between two dates is "
+// 		<< getDifference(dt1, dt2);
+
+// 	return 0;
+// }
+
 
 void cau3 ()
 {
+	cout << "1. Tinh so ngay" << endl;
+	cout << "2. Tim thu" << endl;
+	cout << "3. In lich thang" << endl;
+	cout << "0. Thoat" << endl;
+	cout << "Nhap lua chon: ";
 
+	int n;
+	cin >> n;
+
+	while (n != 0)
+	{
+		if (n == 1)
+		{
+            int ngay_1;
+            int thang_1;
+            int nam_1;
+            int ngay_2;
+            int thang_2;
+            int nam_2;
+            cout << "nhap ngay (1): ";
+            cin >> ngay_1;
+            cout << "nhap thang (1): ";
+            cin >> thang_1;
+            cout << "nhap nam (1): ";
+            cin >> nam_1;
+            cout << "nhap ngay (2): ";
+            cin >> ngay_2;
+            cout << "nhap thang (2): ";
+            cin >> thang_2;
+            cout << "nhap nam (2): ";
+            cin >> nam_2;
+            Date dt1 = { ngay_1, thang_1, nam_1 };
+            Date dt2 = { ngay_2, thang_2, nam_2};
+
+            // Function call
+            cout << "Difference between two dates is "
+                << getDifference(dt1, dt2) << endl;
+
+		}
+
+        else if (n == 2)
+        {
+            int ngay;
+            int thang;
+            int nam;
+            cout << "nhap ngay: ";
+            cin >> ngay;
+            cout << "nhap thang: ";
+            cin >> thang;
+            cout << "nhap nam: ";
+            cin >> nam;
+
+            tim_thu(ngay, thang, nam, nam_nhuan(nam));
+            cout << endl;
+        }
+        
+
+        else if (n == 3)
+        {
+            
+        }
+        
+
+        cout << "Nhap lua chon: ";
+
+	    cin >> n;
+	}
+	
+	
 }
 
 
@@ -887,3 +1035,92 @@ void cau4 ()
     cout << "sum_max la: " << max; 
 }
 
+char* process(char *str,char *result) {
+  int pos = 0;
+ 
+  const int len = strlen(str); /*Tìm độ dài chuỗi ban đầu*/
+  for(int i = 0; i < len; i++) {
+      char chr = str[i];
+
+      /*Nếu ký tự lấy ra là ký tự trắng thì bỏ qua*/
+      if (chr == ' ' && ((str[i + 1] >= 'a' && str[i + 1] <= 'z') || (str[i + 1] >= 'A' && str[i + 1] <= 'Z')))
+			{
+				result[pos++] = chr;
+				continue;
+			}
+			
+      if (chr == '\r' || chr == '\n' || chr == ' ') {
+        continue;
+      }
+
+      /*Thêm ký tự lấy ra vào kết quả*/
+      result[pos++] = chr;
+  }
+
+	if (result[0] == ' ')
+	{
+		for (int i = 0; i < pos; i++)
+		{
+			result[i] = result[i+ 1];
+		}
+		result[pos - 1] = '\0';
+	}
+	
+  return result;
+}
+
+void cau5 ()
+{
+    char str[] = "     this   is  my word   alololo     a"; 
+    cout << "before: ["<< str<<"]\n";
+    char result[100];
+    cout << "after : ["<< process(str,result)<<"]\n";
+}
+
+
+// cau 6
+void normalizeName(char* fullName)
+{
+    char *tmp = 0;
+    int i = 0, j = 0, length = strlen(fullName);
+    // Cấp phát bộ nhớ cho tmp
+    tmp = (char*)malloc((length+1)*sizeof(char));
+    // Thực hiện loại bỏ khoảng trắng
+    while (i < length){
+        // Nếu là chữ cái hoặc số
+        if (isalnum(fullName[i])){
+            tmp[j++] = fullName[i]; // đưa chữ cái hoặc số vào tmp
+        }
+        // nếu là dấu trắng và đằng sau phải là chữ cái hoặc số
+        else if (j && (fullName[i] == ' ') && isalnum(fullName[i+1]))
+        {
+            tmp[j++] = fullName[i]; // đưa khoảng trắng vào tmp
+        }
+        i++;
+    }
+    tmp[j] = 0; // thêm kí tự NULL vào cuỗi chuỗi tmp
+ 
+    // Thực hiện chuyển các kí tự đầu của từ thành IN HOA
+    for (i = 0; i < j; i++){
+        if (!i || ((tmp[i-1] == ' ') && isalpha(tmp[i]))){
+            tmp[i] = toupper(tmp[i]);
+        }
+    }
+ 
+    // Cóp ngược trở lại theo yêu cầu của đề bài
+    strcpy(fullName, tmp);
+}
+ 
+
+void cau6 ()
+{
+	  char name[256] = "   *vo mai &^%$# phuon@#!g    ";
+    cout << name << endl;
+    normalizeName(name);
+    cout << name << endl;
+}
+
+
+
+
+// cau 7

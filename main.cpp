@@ -118,7 +118,9 @@ int main()
 //    result = cau1_pi_cach3(n);
 //    cout << fixed << setprecision(25) <<result * 2 << endl;
 
-    cau4();
+    cau3();
 
     return 0;
 }   
+
+
