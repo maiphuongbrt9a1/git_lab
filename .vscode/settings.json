@@ -30,6 +30,8 @@
   ],
   "editor.foldingMaximumRegions": 65000,
   "files.associations": {
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "cstdlib": "cpp",
+    "algorithm": "cpp"
   }
 }

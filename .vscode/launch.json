@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "d:/BTCPP",
-      "program": "d:/BTCPP/build/Debug/outDebug",
+      "cwd": "d:/BTCPP/Lab 3 - DT 01",
+      "program": "d:/BTCPP/Lab 3 - DT 01/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

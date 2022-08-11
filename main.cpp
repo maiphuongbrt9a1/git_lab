@@ -108,9 +108,20 @@ using namespace std;
 //    int ngay;
 //    cin >> ngay >> thang >> nam;
 //    tim_thu(ngay, thang, nam, nam_nhuan(nam));
+
+    // int *p = new int [10];
+    // srand(time(0));
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     p[i] = rand() % 100;
+    //     cout << p[i] << " ";
+    // }
+
+    // delete[] p;
+    // p = nullptr;
 int main() 
 {
-    cau7();
+    
     return 0;
 }   
 

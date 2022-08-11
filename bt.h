@@ -1388,3 +1388,130 @@ void cau7 ()
 //  convertNumber(n, 16);
 //     return 1;
 // }
+
+void cau769()
+{
+    int a;
+    a = 9999;
+    int *p = &a;
+    cout << p << endl;
+}
+ 
+struct phan_so
+{
+    int tu_so;
+    int mau_so;
+    phan_so(int tu, int mau)
+    {
+        tu_so = tu;
+        mau_so = mau;
+    }
+
+    double result ()
+    {
+        return tu_so * 1.0 / mau_so;
+    } 
+};
+
+void classroom ()
+{
+    int n;
+    cout << "nhap vao so thanh vien cua lop hoc: " << endl;
+    cin >> n;
+
+    student_node *head_node = new student_node;
+    head_node->next = nullptr;
+    
+    student_node *current_node = head_node;
+    current_node->next = nullptr;
+
+    for (int i = 1; i < n; i++)
+    {
+        student_node *tmp = new student_node;
+        tmp->next = nullptr;
+
+        current_node->next = tmp;
+        current_node = tmp;
+    }
+    
+    student_node *tmp = head_node;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "nhap thong tin hoc sinh: " << endl;
+        cin >> tmp->age;
+        cin >> tmp->average;
+        cin >> tmp->id;
+        cin >> tmp->name;
+
+        tmp = tmp->next;
+    }
+
+    tmp = head_node;
+    for (int i = 0; i < n; i++)
+    {
+        // cout << "nhap thong tin hoc sinh: " << endl;
+        cout << tmp->age << endl;
+        cout << tmp->average << endl;
+        cout << tmp->id << endl;
+        cout << tmp->name<< endl;
+
+        tmp = tmp->next;
+    }
+
+}
+
+struct student_node
+{
+    int id;
+    int age;
+    char *name = new char[1024];
+    float average;
+
+    student_node *next;
+};
+
+class LinkedListStudent
+{
+private:
+    student_node *head;
+public:
+    LinkedListStudent(int n);
+    ~LinkedListStudent();
+    void InputLinkedList ();
+    void outputLinkedList ();
+};
+
+LinkedListStudent::LinkedListStudent(int n)
+{
+    student_node *head = new student_node;
+    head->next = nullptr;
+
+    student_node *current_node = head;
+    current_node->next = nullptr;
+
+    for (int i = 1; i < n; i++)
+    {
+        student_node *temp = new student_node;
+        temp->next = nullptr;
+        current_node->next = temp;
+        current_node = temp;
+    }
+    
+}
+
+LinkedListStudent::~LinkedListStudent()
+{
+    student_node *ptr;
+    for (ptr = head; head; ptr = head)
+    {
+        head = head->next;
+        delete [] ptr->name;
+        delete ptr;
+    }
+    
+}
+
+void LinkedListStudent::InputLinkedList()
+{
+    
+}
