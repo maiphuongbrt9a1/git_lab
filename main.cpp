@@ -121,7 +121,7 @@ using namespace std;
     // p = nullptr;
 int main() 
 {
-    
+    cau6();
     return 0;
 }   
 

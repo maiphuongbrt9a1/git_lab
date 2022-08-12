@@ -1261,9 +1261,10 @@ char* process(char *str,char *result) {
         continue;
       }
 
+        if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))
       /*Thêm ký tự lấy ra vào kết quả*/
       result[pos++] = chr;
-  }
+    }
 
 	if (result[0] == ' ')
 	{
@@ -1279,7 +1280,7 @@ char* process(char *str,char *result) {
 
 void cau5 ()
 {
-    char str[] = "     this   is  my word   alololo     a"; 
+    char str[] = "   *vo mai &^%$# phuon@#!g VIET   NAM   "; 
     cout << "before: ["<< str<<"]\n";
     char result[100];
     cout << "after : ["<< process(str,result)<<"]\n";
@@ -1287,10 +1288,42 @@ void cau5 ()
 
 
 // cau 6
-void normalizeName(char* fullName)
+// void normalizeName(char* fullName)
+// {
+//     char *tmp = 0;
+//     int i = 0, j = 0, length = strlen(fullName);
+//     // Cấp phát bộ nhớ cho tmp
+//     tmp = (char*)malloc((length+1)*sizeof(char));
+//     // Thực hiện loại bỏ khoảng trắng
+//     while (i < length){
+//         // Nếu là chữ cái hoặc số
+//         if (isalnum(fullName[i])){
+//             tmp[j++] = fullName[i]; // đưa chữ cái hoặc số vào tmp
+//         }
+//         // nếu là dấu trắng và đằng sau phải là chữ cái hoặc số
+//         else if (j && (fullName[i] == ' ') && isalnum(fullName[i+1]))
+//         {
+//             tmp[j++] = fullName[i]; // đưa khoảng trắng vào tmp
+//         }
+//         i++;
+//     }
+//     tmp[j] = 0; // thêm kí tự NULL vào cuỗi chuỗi tmp
+ 
+//     // Thực hiện chuyển các kí tự đầu của từ thành IN HOA
+//     for (i = 0; i < j; i++){
+//         if (!i || ((tmp[i-1] == ' ') && isalpha(tmp[i]))){
+//             tmp[i] = toupper(tmp[i]);
+//         }
+//     }
+ 
+//     // Cóp ngược trở lại theo yêu cầu của đề bài
+//     strcpy(fullName, tmp);
+// }
+
+char* normalizeName(string fullName)
 {
     char *tmp = 0;
-    int i = 0, j = 0, length = strlen(fullName);
+    int i = 0, j = 0, length = fullName.length();
     // Cấp phát bộ nhớ cho tmp
     tmp = (char*)malloc((length+1)*sizeof(char));
     // Thực hiện loại bỏ khoảng trắng
@@ -1313,19 +1346,62 @@ void normalizeName(char* fullName)
         if (!i || ((tmp[i-1] == ' ') && isalpha(tmp[i]))){
             tmp[i] = toupper(tmp[i]);
         }
+        else tmp[i] = tolower(tmp[i]);
     }
  
     // Cóp ngược trở lại theo yêu cầu của đề bài
-    strcpy(fullName, tmp);
-}
- 
+    // strcpy(fullName, tmp);
+    return tmp;
+    
+} 
 
+// void normalizeName(string fullName)
+// {
+//     char *tmp = 0;
+//     int i = 0, j = 0, length = fullName.length();
+//     // Cấp phát bộ nhớ cho tmp
+//     tmp = (char*)malloc((length+1)*sizeof(char));
+//     // Thực hiện loại bỏ khoảng trắng
+//     while (i < length){
+//         // Nếu là chữ cái hoặc số
+//         if (isalnum(fullName[i])){
+//             tmp[j++] = fullName[i]; // đưa chữ cái hoặc số vào tmp
+//         }
+//         // nếu là dấu trắng và đằng sau phải là chữ cái hoặc số
+//         else if (j && (fullName[i] == ' ') && isalnum(fullName[i+1]))
+//         {
+//             tmp[j++] = fullName[i]; // đưa khoảng trắng vào tmp
+//         }
+//         i++;
+//     }
+//     tmp[j] = 0; // thêm kí tự NULL vào cuỗi chuỗi tmp
+ 
+//     // Thực hiện chuyển các kí tự đầu của từ thành IN HOA
+//     for (i = 0; i < j; i++){
+//         if (!i || ((tmp[i-1] == ' ') && isalpha(tmp[i]))){
+//             tmp[i] = toupper(tmp[i]);
+//         }
+//     }
+ 
+//     // Cóp ngược trở lại theo yêu cầu của đề bài
+//     // strcpy(fullName, tmp);
+//     for (int i = 0; i < length; i++)
+//     {
+//         fullName[i] = tmp[i];
+//     }
+    
+// }
 void cau6 ()
 {
-	  char name[256] = "   *vo mai &^%$# phuon@#!g    ";
+	string name = "   *vo mai &^%$# phuon@#!g VIET   NAM   ";
     cout << name << endl;
-    normalizeName(name);
-    cout << name << endl;
+    char *name1 = normalizeName(name);
+    for (int i = 0; i < name.length(); i++)
+    {
+        cout << name1[i];
+    }
+    // cout << name << endl;
+
 }
 
 
@@ -1413,6 +1489,17 @@ struct phan_so
     } 
 };
 
+struct student_node
+{
+    int id;
+    int age;
+    char *name = new char[1024];
+    float average;
+
+    student_node *next;
+};
+
+
 void classroom ()
 {
     int n;
@@ -1460,15 +1547,6 @@ void classroom ()
 
 }
 
-struct student_node
-{
-    int id;
-    int age;
-    char *name = new char[1024];
-    float average;
-
-    student_node *next;
-};
 
 class LinkedListStudent
 {
