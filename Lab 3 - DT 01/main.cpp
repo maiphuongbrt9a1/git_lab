@@ -152,7 +152,6 @@ int countriesNum(Node *pHead)
     while (temp != nullptr)
     {
         count++;
-        // cout << count << "."<< temp->info.strName << endl;
         temp = temp->nextName;
     }
     

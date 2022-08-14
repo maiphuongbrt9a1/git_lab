@@ -121,7 +121,46 @@ using namespace std;
     // p = nullptr;
 int main() 
 {
-    cau6();
+    int n;
+    int choose;
+    int sum = 0;
+    
+    cout << "chieu dai LL: ";
+    cin >> n;
+    cout << "nhap lua chon\n'1: them vao dau chuoi.'\n'2: them vao cuoi chuoi.'" << endl;
+    cin >> choose;
+    number con_so = number();
+    if (choose == 1)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            int n;
+            cout << "nhap so nguyen n: ";
+            cin >> n;
+            con_so.insert_to_head(con_so.pHead, n);
+        }
+    }
+    else if (choose == 2)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            int n;
+            cout << "nhap so nguyen n: ";
+            cin >> n;
+            con_so.insert_to_tail(con_so.pTail, n);
+        }   
+    }
+    con_so.output();
+    con_so.insert_after_qNode(con_so.pHead, 3, 5);
+    con_so.insert_befor_qNode(con_so.pHead, 3, 1234);
+    
+    con_so.output();
+
+    int_number *node = con_so.pop(con_so.pHead);
+    con_so.output();
+    sum = con_so.sum(con_so.pHead);
+    cout << "tong LL : " << sum << endl;
+    
     return 0;
 }   
 

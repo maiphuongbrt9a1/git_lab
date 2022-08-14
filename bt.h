@@ -1555,8 +1555,9 @@ private:
 public:
     LinkedListStudent(int n);
     ~LinkedListStudent();
-    void InputLinkedList ();
+    void InsertLinkedList(student_node  *&pHead, student_node *&insert);
     void outputLinkedList ();
+    friend class int_number;
 };
 
 LinkedListStudent::LinkedListStudent(int n)
@@ -1589,7 +1590,208 @@ LinkedListStudent::~LinkedListStudent()
     
 }
 
-void LinkedListStudent::InputLinkedList()
+void LinkedListStudent::InsertLinkedList(student_node  *&pHead, student_node *&insert)
 {
+    if (pHead->next == nullptr)
+    {
+        pHead->next = insert;
+    }
+    else
+    {
+        insert->next = pHead->next;
+        pHead->next = insert;
+    }
+}
+
+struct int_number {
+    int x;
+    int_number *next;
+};
+
+class number
+{
+// private:
+public:
+    int_number *pHead;
+    int_number *pTail;
+    number();
+    ~number();
+    void insert_to_head(int_number *&pHead, int x);
+    void insert_to_tail(int_number *&pTail, int x);
+    void insert_after_qNode(int_number *&pHead, int qNode, int x);
+    void insert_befor_qNode(int_number *&pHead, int qNode, int x);
+    void output();
+    long int sum(int_number *pHead);
+    bool is_emty(int_number *pHead);
+    int_number * pop(int_number *&pHead);
+};
+
+int_number * number::pop(int_number *&pHead)
+{
+    int_number *tmp = pHead;
+    if (!tmp->next)
+    {
+        return nullptr;
+    }
+    else
+    {
+        tmp = tmp->next;
+        pHead->next = tmp->next;
+        tmp->next = nullptr;
+    }
+    return tmp;
+}
+
+number::number()
+{
+    this->pHead = new int_number;
+    this->pTail = this->pHead;
+    this->pHead->next = nullptr;
+    this->pTail->next = nullptr;
+    cout << "contrucstor" << endl;
+}
+
+number::~number()
+{
+    int_number *tmp;
+    for (tmp = this->pHead; this->pHead; tmp = this->pHead)
+    {
+        this->pHead = this->pHead->next;
+        delete tmp;
+    }
+    cout << "detructor" << endl;
+}
+
+void number::insert_to_head(int_number *&pHead, int x)
+{
+    int_number *node = new int_number;
+    node->x = x;
+    node->next = nullptr;
+
+    if (pHead->next == nullptr)
+    {
+        pHead->next = node;
+        pTail = node;
+    }
+    else
+    {
+        node->next = pHead->next;
+        pHead->next = node;
+    }
     
 }
+
+void number::insert_to_tail(int_number *&pTail, int x)
+{
+    int_number *node = new int_number;
+    node->x = x;
+    node->next = nullptr;
+
+    if (this->pHead->next == pTail->next)
+    {
+        pHead->next = node;
+        pTail = node;
+    }
+    else
+    {
+        pTail->next = node;
+        pTail = node;
+    }
+    
+}
+
+void number::output()
+{
+    int_number *tmp = this->pHead->next;
+    while (tmp)
+    {
+        cout << tmp->x << " ------> ";
+        tmp = tmp->next;
+    }
+    cout << "nullptr" << endl;
+}
+
+long int number::sum(int_number *pHead)
+{
+    long int sum = 0;
+    int_number *tmp = pHead->next;
+    while (tmp)
+    {
+        sum += tmp->x;
+        tmp = tmp->next;
+    }
+    return sum;
+}
+
+
+bool number::is_emty(int_number *pHead)
+{
+    if (pHead->next == nullptr)
+    {
+        return true;
+    }
+    
+    return false;
+   
+}
+
+void number::insert_after_qNode(int_number *&pHead, int qNode, int x)
+{
+    int count = 0;
+    int_number *tmp = pHead;
+    if (!pHead->next)
+    {
+        cout << "can't completed method because this is an emty linked list" << endl;
+    }
+    else
+    {
+        tmp = tmp->next;
+        while (tmp)
+        {
+            count++;
+            if (count == qNode)
+            {
+                int_number *node = new int_number;
+                node->x = x;      
+                node->next =tmp->next;
+                tmp->next = node;
+                break;
+            }
+            tmp = tmp->next;
+        }
+        
+    }   
+}
+
+void number::insert_befor_qNode(int_number *&pHead, int qNode, int x)
+{
+    int count = 0;
+    int_number *tmp = pHead;
+
+    if (!tmp->next)
+    {
+        cout << "can't completed method because this is emty linked list.\n";
+    }
+    else
+    {
+        int_number *tmp0 = pHead;
+        tmp = tmp->next;
+        while (tmp)
+        {
+            count++;
+            if (count == qNode)
+            {
+                int_number *newNode = new int_number;
+                newNode->x = x;
+                newNode->next = tmp;
+                tmp0->next = newNode;
+                break;
+            }
+            tmp0 = tmp0->next;
+            tmp = tmp->next;
+        }
+        
+    }   
+}
+
+
