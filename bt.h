@@ -1489,119 +1489,6 @@ struct phan_so
     } 
 };
 
-struct student_node
-{
-    int id;
-    int age;
-    char *name = new char[1024];
-    float average;
-
-    student_node *next;
-};
-
-
-void classroom ()
-{
-    int n;
-    cout << "nhap vao so thanh vien cua lop hoc: " << endl;
-    cin >> n;
-
-    student_node *head_node = new student_node;
-    head_node->next = nullptr;
-    
-    student_node *current_node = head_node;
-    current_node->next = nullptr;
-
-    for (int i = 1; i < n; i++)
-    {
-        student_node *tmp = new student_node;
-        tmp->next = nullptr;
-
-        current_node->next = tmp;
-        current_node = tmp;
-    }
-    
-    student_node *tmp = head_node;
-    for (int i = 0; i < n; i++)
-    {
-        cout << "nhap thong tin hoc sinh: " << endl;
-        cin >> tmp->age;
-        cin >> tmp->average;
-        cin >> tmp->id;
-        cin >> tmp->name;
-
-        tmp = tmp->next;
-    }
-
-    tmp = head_node;
-    for (int i = 0; i < n; i++)
-    {
-        // cout << "nhap thong tin hoc sinh: " << endl;
-        cout << tmp->age << endl;
-        cout << tmp->average << endl;
-        cout << tmp->id << endl;
-        cout << tmp->name<< endl;
-
-        tmp = tmp->next;
-    }
-
-}
-
-
-class LinkedListStudent
-{
-private:
-    student_node *head;
-public:
-    LinkedListStudent(int n);
-    ~LinkedListStudent();
-    void InsertLinkedList(student_node  *&pHead, student_node *&insert);
-    void outputLinkedList ();
-    friend class int_number;
-};
-
-LinkedListStudent::LinkedListStudent(int n)
-{
-    student_node *head = new student_node;
-    head->next = nullptr;
-
-    student_node *current_node = head;
-    current_node->next = nullptr;
-
-    for (int i = 1; i < n; i++)
-    {
-        student_node *temp = new student_node;
-        temp->next = nullptr;
-        current_node->next = temp;
-        current_node = temp;
-    }
-    
-}
-
-LinkedListStudent::~LinkedListStudent()
-{
-    student_node *ptr;
-    for (ptr = head; head; ptr = head)
-    {
-        head = head->next;
-        delete [] ptr->name;
-        delete ptr;
-    }
-    
-}
-
-void LinkedListStudent::InsertLinkedList(student_node  *&pHead, student_node *&insert)
-{
-    if (pHead->next == nullptr)
-    {
-        pHead->next = insert;
-    }
-    else
-    {
-        insert->next = pHead->next;
-        pHead->next = insert;
-    }
-}
 
 struct int_number {
     int x;
@@ -1610,25 +1497,26 @@ struct int_number {
 
 class number
 {
-// private:
-public:
+private:
     int_number *pHead;
     int_number *pTail;
+
+public:
     number();
     ~number();
-    void insert_to_head(int_number *&pHead, int x);
-    void insert_to_tail(int_number *&pTail, int x);
-    void insert_after_qNode(int_number *&pHead, int qNode, int x);
-    void insert_befor_qNode(int_number *&pHead, int qNode, int x);
+    void insert_to_head(int x);
+    void insert_to_tail(int x);
+    void insert_after_qNode(int qNode, int x);
+    void insert_befor_qNode(int qNode, int x);
     void output();
-    long int sum(int_number *pHead);
-    bool is_emty(int_number *pHead);
-    int_number * pop(int_number *&pHead);
+    long int sum();
+    bool is_emty();
+    int_number * pop();
 };
 
-int_number * number::pop(int_number *&pHead)
+int_number * number::pop()
 {
-    int_number *tmp = pHead;
+    int_number *tmp =this->pHead;
     if (!tmp->next)
     {
         return nullptr;
@@ -1636,7 +1524,7 @@ int_number * number::pop(int_number *&pHead)
     else
     {
         tmp = tmp->next;
-        pHead->next = tmp->next;
+        this->pHead->next = tmp->next;
         tmp->next = nullptr;
     }
     return tmp;
@@ -1662,40 +1550,40 @@ number::~number()
     cout << "detructor" << endl;
 }
 
-void number::insert_to_head(int_number *&pHead, int x)
+void number::insert_to_head(int x)
 {
     int_number *node = new int_number;
     node->x = x;
     node->next = nullptr;
 
-    if (pHead->next == nullptr)
+    if (this->pHead->next == nullptr)
     {
-        pHead->next = node;
-        pTail = node;
+        this->pHead->next = node;
+        this->pTail = node;
     }
     else
     {
-        node->next = pHead->next;
-        pHead->next = node;
+        node->next =this->pHead->next;
+        this->pHead->next = node;
     }
     
 }
 
-void number::insert_to_tail(int_number *&pTail, int x)
+void number::insert_to_tail(int x)
 {
     int_number *node = new int_number;
     node->x = x;
     node->next = nullptr;
 
-    if (this->pHead->next == pTail->next)
+    if (this->pHead->next == this->pTail->next)
     {
-        pHead->next = node;
-        pTail = node;
+        this->pHead->next = node;
+        this->pTail = node;
     }
     else
     {
-        pTail->next = node;
-        pTail = node;
+        this->pTail->next = node;
+        this->pTail = node;
     }
     
 }
@@ -1711,10 +1599,10 @@ void number::output()
     cout << "nullptr" << endl;
 }
 
-long int number::sum(int_number *pHead)
+long int number::sum()
 {
     long int sum = 0;
-    int_number *tmp = pHead->next;
+    int_number *tmp =this->pHead->next;
     while (tmp)
     {
         sum += tmp->x;
@@ -1724,9 +1612,9 @@ long int number::sum(int_number *pHead)
 }
 
 
-bool number::is_emty(int_number *pHead)
+bool number::is_emty()
 {
-    if (pHead->next == nullptr)
+    if (this->pHead->next == nullptr)
     {
         return true;
     }
@@ -1735,11 +1623,11 @@ bool number::is_emty(int_number *pHead)
    
 }
 
-void number::insert_after_qNode(int_number *&pHead, int qNode, int x)
+void number::insert_after_qNode(int qNode, int x)
 {
     int count = 0;
-    int_number *tmp = pHead;
-    if (!pHead->next)
+    int_number *tmp = this->pHead;
+    if (!this->pHead->next)
     {
         cout << "can't completed method because this is an emty linked list" << endl;
     }
@@ -1763,10 +1651,10 @@ void number::insert_after_qNode(int_number *&pHead, int qNode, int x)
     }   
 }
 
-void number::insert_befor_qNode(int_number *&pHead, int qNode, int x)
+void number::insert_befor_qNode(int qNode, int x)
 {
     int count = 0;
-    int_number *tmp = pHead;
+    int_number *tmp = this->pHead;
 
     if (!tmp->next)
     {
@@ -1774,7 +1662,7 @@ void number::insert_befor_qNode(int_number *&pHead, int qNode, int x)
     }
     else
     {
-        int_number *tmp0 = pHead;
+        int_number *tmp0 = this->pHead;
         tmp = tmp->next;
         while (tmp)
         {
@@ -1795,3 +1683,148 @@ void number::insert_befor_qNode(int_number *&pHead, int qNode, int x)
 }
 
 
+struct coordinate {
+    float x;
+    float y;
+    float z;
+};
+
+struct Point {
+    coordinate infor;
+    Point * nextPoint;
+};
+
+class mpOxy
+{
+private:
+    Point *pHead;
+    Point *pTail;
+public:
+    mpOxy();
+    mpOxy(float x, float y, float z);
+    ~mpOxy();
+};
+
+mpOxy::mpOxy()
+{
+    this->pHead = new Point;
+    this->pHead->nextPoint = nullptr;
+    this->pTail = this->pHead;
+}
+
+mpOxy::mpOxy(float x, float y, float z)
+{
+    this->pHead = new Point;
+    this->pHead->nextPoint->infor.x = x;
+    this->pHead->nextPoint->infor.y = y;
+    this->pHead->nextPoint->infor.z = z;
+    this->pHead->nextPoint->nextPoint = nullptr;
+
+    this->pTail = this->pHead->nextPoint;
+
+}
+mpOxy::~mpOxy()
+{
+    Point *tmp;
+    for (tmp = this->pHead; this->pHead; tmp = this->pHead)
+    {
+        this->pHead = this->pHead->nextPoint;
+        delete tmp;
+    }
+
+    this->pTail = nullptr;
+}
+
+
+struct student_node
+{
+    char name[30];
+    int Maths = 0;
+    int Literture = 0;
+    float average = 0.0f;
+
+    student_node *next;
+};
+
+class LinkedListStudent
+{
+private:
+    student_node *pHead;
+    student_node *pTail;
+public:
+    LinkedListStudent();
+    LinkedListStudent(char name[], int Maths, int Literture, float average);
+    ~LinkedListStudent();
+    void InsertLinkedList(char name[], int Maths, int Literture, float average);
+    void outputLinkedList ();
+};
+
+LinkedListStudent::LinkedListStudent()
+{
+    this->pHead = new student_node;
+    this->pHead->next = nullptr;
+    this->pTail = this->pHead;    
+}
+
+LinkedListStudent::LinkedListStudent(char name[], int Maths, int Literture, float average)
+{
+    this->pHead = new student_node;
+    for (int i = 0; i < 30; i++)
+    {
+        this->pHead->next->name[i] = name[i];
+    }
+
+    this->pHead->next->Maths = Maths;
+    this->pHead->next->Literture = Literture;
+    this->pHead->next->average = average;
+
+    this->pHead->next->next = nullptr;
+    this->pTail = this->pHead->next;
+    
+
+}
+
+LinkedListStudent::~LinkedListStudent()
+{
+    student_node *ptr;
+    for (ptr = this->pHead; this->pHead; ptr = this->pHead)
+    {
+        this->pHead = this->pHead->next;
+        delete [] ptr->name;
+        delete ptr;
+    }
+    
+}
+
+void LinkedListStudent::InsertLinkedList(char name[], int Maths, int Literture, float average)
+{
+    if (this->pHead->next == nullptr)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            this->pHead->next->name[i] = name[i];
+        }
+        
+        this->pHead->next->Maths = Maths;
+        this->pHead->next->Literture = Literture;
+        this->pHead->next->average = average;
+
+        this->pHead->next->next = nullptr;
+        this->pTail = this->pHead->next;
+    }
+    else
+    {
+        student_node *insert = new student_node;
+        insert->average = average;
+        insert->Maths = Maths;
+        insert->Literture = Literture;
+        for (int i = 0; i < 30; i++)
+        {
+            insert->name[i] = name[i];
+        }
+        insert->next = nullptr;
+
+        this->pTail->next = insert;
+        this->pTail = insert;
+    }
+}

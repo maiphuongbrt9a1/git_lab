@@ -137,7 +137,7 @@ int main()
             int n;
             cout << "nhap so nguyen n: ";
             cin >> n;
-            con_so.insert_to_head(con_so.pHead, n);
+            con_so.insert_to_head(n);
         }
     }
     else if (choose == 2)
@@ -147,18 +147,18 @@ int main()
             int n;
             cout << "nhap so nguyen n: ";
             cin >> n;
-            con_so.insert_to_tail(con_so.pTail, n);
+            con_so.insert_to_tail(n);
         }   
     }
     con_so.output();
-    con_so.insert_after_qNode(con_so.pHead, 3, 5);
-    con_so.insert_befor_qNode(con_so.pHead, 3, 1234);
+    con_so.insert_after_qNode(3, 5);
+    con_so.insert_befor_qNode(3, 1234);
     
     con_so.output();
 
-    int_number *node = con_so.pop(con_so.pHead);
+    int_number *node = con_so.pop();
     con_so.output();
-    sum = con_so.sum(con_so.pHead);
+    sum = con_so.sum();
     cout << "tong LL : " << sum << endl;
     
     return 0;
