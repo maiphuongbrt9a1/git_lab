@@ -1828,3 +1828,180 @@ void LinkedListStudent::InsertLinkedList(char name[], int Maths, int Literture, 
         this->pTail = insert;
     }
 }
+
+class integer
+{
+private:
+    int val;
+public:
+    integer(int val);
+    void setValue(int val);
+    int getValue();
+    ~integer();
+};
+
+integer::integer(int val)
+{
+    this->val = val;
+}
+
+integer::~integer()
+{
+}
+
+void integer::setValue(int val)
+{
+    this->val = val;
+}
+
+int integer::getValue()
+{
+    return this->val;
+}
+
+class Room 
+{
+    private:
+        int length;
+        int breadth;
+        int height;
+    public:
+        Room();
+        Room(int length, int breadth, int height);
+        ~Room();
+        int calculateArea();
+        int calculateVolume();      
+};
+
+Room::Room()
+{
+    this->length = 0;
+    this->breadth = 0;
+    this->height = 0;
+}
+
+Room::Room(int length, int breadth, int height)
+{
+    this->length = length;
+    this->breadth = breadth;
+    this->height = height;
+}
+
+Room::~Room()
+{
+
+}
+
+int Room::calculateArea()
+{
+    int s = this->length * this->breadth;
+    return s;
+}
+
+int Room::calculateVolume()
+{
+    return this->length * this->breadth * this->height;
+}
+
+
+class clockType {
+    private:
+        int hr;
+        int min;
+        int sec;
+    public:
+        void setTime(int hr, int min, int sec);
+        void getTime(int &hr, int &min, int &sec) const;
+        void printTime() const;
+        void incrementSeconds();
+        void incrementMinutes();
+        void incrementHours(); 
+        bool equalTime(const clockType&) const; 
+        clockType(int, int, int); //constructor with parameters
+        clockType(); //default constructor 
+
+};
+
+clockType::clockType()
+{
+    this->hr = 0;
+    this->min = 0;
+    this->sec = 0;
+}
+
+clockType::clockType(int hr, int min, int sec)
+{
+    this->hr = hr;
+    this->min = min;
+    this->sec = sec;
+}
+
+void clockType::setTime(int hr, int min, int sec)
+{
+    this->hr = hr;
+    this->min = min;
+    this->sec = sec;
+}
+
+void clockType::getTime(int &hr, int &min, int &sec) const
+{
+    hr = this->hr;
+    min = this->min;
+    sec = this->sec;
+}
+
+void clockType::printTime() const
+{
+    if (this->hr < 10)
+    {
+       cout << "0" << this->hr << ":"; 
+    } else cout << this->hr << ":";
+        
+    if (this->min < 10)
+    {
+       cout << "0" << this->min << ":"; 
+    } else cout << this->min << ":";
+    
+    if (this->sec < 10)
+    {
+       cout << "0" << this->sec << endl; 
+    } else cout << this->sec << endl;
+}
+
+void clockType::incrementHours()
+{
+    if (this->hr >= 24)
+    {
+        this->hr = 0;
+    }
+    
+}
+
+void clockType::incrementMinutes()
+{
+    this->min += 1;
+    if (this->min >= 60) 
+    {
+        this->min = 0;
+        incrementHours();
+    }
+}
+
+void clockType::incrementSeconds()
+{
+    this->sec += 1;
+    if (this->sec >= 60)
+    {
+        this->sec = 0;
+        incrementMinutes();
+    }
+}
+
+bool clockType::equalTime(const clockType &x) const
+{
+
+    if (this->hr == x.hr && this->min == x.min && this->sec == x.sec) 
+    return true;
+    else return false;
+}
+

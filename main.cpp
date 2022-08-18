@@ -119,48 +119,23 @@ using namespace std;
 
     // delete[] p;
     // p = nullptr;
+
+    
 int main() 
 {
-    int n;
-    int choose;
-    int sum = 0;
-    
-    cout << "chieu dai LL: ";
-    cin >> n;
-    cout << "nhap lua chon\n'1: them vao dau chuoi.'\n'2: them vao cuoi chuoi.'" << endl;
-    cin >> choose;
-    number con_so = number();
-    if (choose == 1)
-    {
-        for (int i = 0; i < n; i++)
-        {
-            int n;
-            cout << "nhap so nguyen n: ";
-            cin >> n;
-            con_so.insert_to_head(n);
-        }
-    }
-    else if (choose == 2)
-    {
-        for (int i = 0; i < n; i++)
-        {
-            int n;
-            cout << "nhap so nguyen n: ";
-            cin >> n;
-            con_so.insert_to_tail(n);
-        }   
-    }
-    con_so.output();
-    con_so.insert_after_qNode(3, 5);
-    con_so.insert_befor_qNode(3, 1234);
-    
-    con_so.output();
+    //  task 1
+    // integer i(10); 
+    // cout << i.getValue(); 
+    // i.setValue(15); 
+    // cout << i.getValue(); 
 
-    int_number *node = con_so.pop();
-    con_so.output();
-    sum = con_so.sum();
-    cout << "tong LL : " << sum << endl;
-    
+    // task 2
+    // Room r(10,2,5); 
+    // cout << r.calculateArea() << endl; 
+    // cout << r.calculateVolume() << endl; 
+
+    // task 3
+
     return 0;
 }   
 
